@@ -14,21 +14,13 @@
 
 void	*ft_calloc(size_t num_elements, size_t element_size)
 {
-	size_t	bytes;
-	void	*p;
+	void	*ptr;
 
+	ptr = malloc(num_elements * element_size);
 	if (num_elements == 0 || element_size == 0)
-	{
-		num_elements = 1;
-		element_size = 1;
-	}
-	bytes = num_elements * element_size;
-	p = malloc(bytes);
-	if (p == NULL)
+		return (malloc(0));
+	if (ptr == NULL)
 		return (NULL);
-	else
-		ft_bzero(p, bytes);
-	return (p);
+	ft_memset((unsigned char *)ptr, 0, num_elements * element_size);
+	return (ptr);
 }
-
-

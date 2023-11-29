@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hienguye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 11:24:45 by hienguye          #+#    #+#             */
-/*   Updated: 2023/10/17 11:24:48 by hienguye         ###   ########.fr       */
+/*   Created: 2023/11/29 11:25:50 by hienguye          #+#    #+#             */
+/*   Updated: 2023/11/29 11:25:58 by hienguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *str, int c, size_t n)
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	char	*p;
-	char	v;
-
-	p = (char *)str;
-	v = (char)c;
-	while (n--)
+	if (lst != NULL && del != NULL)
 	{
-		*p++ = v;
+		del (lst->content);
+		free(lst);
 	}
-	return (str);
 }
-
-// #include <stdio.h>
-// #include <string.h>
-// int	main(void)
-// {
-// 	char str[10] = "0123456789";
-// 	ft_memset(str, '0', 6);
-//    	puts(str);
-// }

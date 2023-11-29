@@ -1,65 +1,67 @@
-Library		= libft
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: hienguye <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/11/29 10:57:06 by hienguye          #+#    #+#              #
+#    Updated: 2023/11/29 10:57:10 by hienguye         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-files 	   = ft_strlen \
-			 ft_memmove \
-			 ft_memcpy \
-			 ft_strlcpy \
-			 ft_strlcat \
-			 ft_isalpha \
-			 ft_isdigit \
-			 ft_isalnum \
-			 ft_isascii \
-			 ft_isprint \
-			 ft_memset \
-			 ft_bzero \
-			 ft_toupper \
-			 ft_tolower \
-			 ft_strchr \
-			 ft_strrchr \
-			 ft_strncmp \
-			 ft_memchr \
-			 ft_memcmp \
-			 ft_strnstr \
-			 ft_atoi \
-			 ft_calloc \
-			 ft_strdup \
-			 ft_substr \
-			 ft_strjoin \
-			 ft_strtrim \
-			 ft_split \
-			 ft_itoa \
-			 ft_strmapi \
-			 ft_striteri \
-			 ft_putchar_fd \
-			 ft_putstr_fd \
-			 ft_putendl_fd \
-			 ft_putnbr_fd \
+NAME 	= 	libft.a
 
-Compiler	= cc
+CFLAGS 	= 	-Wall -Werror -Wextra
 
-CmpFlags	= -Wall -Wextra -Werror
+CC		= 	cc
 
-OUTN	= $(Library).a
+RM 	= 	rm -f
 
-CFILES	= $(files:%=%.c)
+SRC 	= 	ft_atoi.c ft_bzero.c				\
+			ft_calloc.c ft_isalnum.c			\
+			ft_isalpha.c ft_isascii.c			\
+			ft_isdigit.c ft_isprint.c			\
+			ft_itoa.c ft_memchr.c				\
+			ft_memcmp.c ft_memcpy.c				\
+			ft_memmove.c ft_memset.c			\
+			ft_putchar_fd.c ft_putendl_fd.c		\
+			ft_putnbr_fd.c ft_putstr_fd.c		\
+			ft_strchr.c ft_striteri.c			\
+			ft_strjoin.c ft_strlcat.c			\
+			ft_strlcpy.c ft_strlen.c			\
+			ft_strncmp.c ft_strmapi.c			\
+			ft_strnstr.c ft_strrchr.c			\
+			ft_strtrim.c ft_substr.c			\
+			ft_tolower.c ft_toupper.c			\
+			ft_strdup.c	ft_split.c				\
 
-OFILES	= $(files:%=%.o)
+OBJS 		= $(SRC:.c=.o)
 
-NAME	= $(OUTN)
+BONUS	=	ft_lstadd_back.c ft_lstadd_front.c	\
+			ft_lstclear.c ft_lstdelone.c		\
+			ft_lstiter.c ft_lstlast.c			\
+			ft_lstmap.c ft_lstnew.c ft_lstsize.c	\
 
-$(NAME):
-	$(Compiler) $(CmpFlags) -c $(CFILES) -I./
-	ar -rc $(OUTN) $(OFILES)
+BONUS_OBJS	= $(BONUS:.c=.o)
 
-all: $(NAME)
+all:		$(NAME)
+
+$(NAME): $(OBJS)
+	ar rcs $(NAME) $(OBJS)
+
+%.o: %.c
+		@$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-	rm -f $(NAME)
-	rm -f $(OFILES)
+		@$(RM) $(OBJS) $(BONUS_OBJS)
 
-fclean: clean
-	rm -f $(NAME)
+fclean:
+		@$(RM) $(NAME)
 
-re: fclean all
+re:		fclean $(NAME)
 
-.PHONY: all, clean, fclean, re
+bonus:			$(OBJS) $(BONUS_OBJS)
+				ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+
+.PHONY: all, bonus, clean, fclean, re

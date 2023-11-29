@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hienguye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 11:24:45 by hienguye          #+#    #+#             */
-/*   Updated: 2023/10/17 11:24:48 by hienguye         ###   ########.fr       */
+/*   Created: 2023/11/29 11:25:15 by hienguye          #+#    #+#             */
+/*   Updated: 2023/11/29 11:25:32 by hienguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *str, int c, size_t n)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	char	*p;
-	char	v;
+	t_list	*temp;
+	t_list	*actual_node;
 
-	p = (char *)str;
-	v = (char)c;
-	while (n--)
+	if (lst == NULL || *lst == NULL || del == NULL)
+		return ;
+	actual_node = *lst;
+	while (actual_node != NULL)
 	{
-		*p++ = v;
+		temp = actual_node->next;
+		ft_lstdelone(actual_node, del);
+		actual_node = temp;
 	}
-	return (str);
+	*lst = NULL;
 }
-
-// #include <stdio.h>
-// #include <string.h>
-// int	main(void)
-// {
-// 	char str[10] = "0123456789";
-// 	ft_memset(str, '0', 6);
-//    	puts(str);
-// }

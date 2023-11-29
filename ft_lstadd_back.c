@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hienguye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 11:24:45 by hienguye          #+#    #+#             */
-/*   Updated: 2023/10/17 11:24:48 by hienguye         ###   ########.fr       */
+/*   Created: 2023/11/29 11:24:15 by hienguye          #+#    #+#             */
+/*   Updated: 2023/11/29 11:24:29 by hienguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *str, int c, size_t n)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	char	*p;
-	char	v;
+	t_list	*last_node;
 
-	p = (char *)str;
-	v = (char)c;
-	while (n--)
+	if (*lst == NULL)
+		*lst = new;
+	else
 	{
-		*p++ = v;
+		last_node = ft_lstlast(*lst);
+		last_node->next = new;
 	}
-	return (str);
 }
-
-// #include <stdio.h>
-// #include <string.h>
-// int	main(void)
-// {
-// 	char str[10] = "0123456789";
-// 	ft_memset(str, '0', 6);
-//    	puts(str);
-// }

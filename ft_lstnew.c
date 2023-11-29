@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hienguye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 11:24:45 by hienguye          #+#    #+#             */
-/*   Updated: 2023/10/17 11:24:48 by hienguye         ###   ########.fr       */
+/*   Created: 2023/11/29 11:27:34 by hienguye          #+#    #+#             */
+/*   Updated: 2023/11/29 11:27:41 by hienguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *str, int c, size_t n)
+t_list	*ft_lstnew(void *content)
 {
-	char	*p;
-	char	v;
+	t_list	*new_node;
 
-	p = (char *)str;
-	v = (char)c;
-	while (n--)
-	{
-		*p++ = v;
-	}
-	return (str);
+	new_node = (t_list *)malloc(sizeof(t_list));
+	if (new_node == NULL)
+		return (NULL);
+	new_node->content = content;
+	new_node->next = NULL;
+	return (new_node);
 }
-
-// #include <stdio.h>
-// #include <string.h>
-// int	main(void)
-// {
-// 	char str[10] = "0123456789";
-// 	ft_memset(str, '0', 6);
-//    	puts(str);
-// }

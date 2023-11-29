@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hienguye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 11:24:45 by hienguye          #+#    #+#             */
-/*   Updated: 2023/10/17 11:24:48 by hienguye         ###   ########.fr       */
+/*   Created: 2023/11/29 11:26:55 by hienguye          #+#    #+#             */
+/*   Updated: 2023/11/29 11:26:59 by hienguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *str, int c, size_t n)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	char	*p;
-	char	v;
+	t_list	*new;
+	t_list	*first;
 
-	p = (char *)str;
-	v = (char)c;
-	while (n--)
+	first = NULL;
+	while (lst != NULL)
 	{
-		*p++ = v;
+		new = ft_lstnew((*f)(lst->content));
+		if (new == NULL)
+		{
+			ft_lstclear(&first, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&first, new);
+		lst = lst->next;
 	}
-	return (str);
+	return (first);
 }
-
-// #include <stdio.h>
-// #include <string.h>
-// int	main(void)
-// {
-// 	char str[10] = "0123456789";
-// 	ft_memset(str, '0', 6);
-//    	puts(str);
-// }

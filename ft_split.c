@@ -12,104 +12,68 @@
 
 #include "libft.h"
 
-static void	ft_freeup(char *strs)
+int	num_of_strings(char *str, char c)
 {
 	int	i;
+	int	n_words;
 
+	n_words = 0;
 	i = 0;
-	while (strs[i] != '\0')
+	if (str[0] && str[0] != c)
+		n_words++;
+	while (str[i])
 	{
-		free(strs);
+		if (str[i] == c && (str[i + 1] != c && str[i + 1] != 0))
+			n_words++;
 		i++;
 	}
-	free(strs);
+	return (n_words);
 }
 
-static int	ft_wordcount(char *s, char c)
+char	*str_add(char *str, char c, int *index)
 {
-	int	i;
-	int	word;
-
-	i = 0;
-	word = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i] != c)
-		{
-			word++;
-			while (s[i] != c && s[i] != '\0')
-				i++;
-			if (s[i] == '\0')
-				return (word);
-		}
-		i++;
-	}
-	return (word);
-}
-
-static void	ft_strcpy(char *word, char *s, char c, int j)
-{
-	int	i;
-
-	i = 0;
-	while (s[j] != '\0' && s[j] == c)
-		j++;
-	while (s[j + i] != c && s[j + i] != '\0')
-	{
-		word[i] = s[j + i];
-		i++;
-	}
-	word[i] = '\0';
-}
-
-static char	*ft_stralloc(char *s, char c, int *k)
-{
+	int		i;
+	int		length;
 	char	*word;
-	int		j;
 
-	j = *k;
-	word = NULL;
-	while (s[*k] != '\0')
+	length = 0;
+	while (str[length] && str[length] != c)
+		length++;
+	word = malloc(sizeof(char) * (length + 1));
+	if (word == NULL)
+		return (NULL);
+	i = 0;
+	*index = *index + length;
+	while (i < length)
 	{
-		if (s[*k] != c)
-		{
-			while (s[*k] != '\0' && s[*k] != c)
-				*k += 1;
-			word = (char *)malloc(sizeof(char) * (*k + 1));
-			if (word == NULL)
-				return (NULL);
-			break ;
-		}
-		*k += 1;
+		word[i] = str[i];
+		i++;
 	}
-	ft_strcpy(word, s, c, j);
+	word[i] = 0;
 	return (word);
 }
 
 char	**ft_split(char const *s, char c)
 {
+	char	*str;
+	char	**array;
 	int		i;
 	int		j;
-	int		pos;
-	char	**strs;
 
-	if (!s)
+	str = (char *) s;
+	array = (char **) malloc(sizeof(char *) * (num_of_strings(str, c) + 1));
+	if (array == NULL)
 		return (NULL);
 	i = 0;
-	j = ft_wordcount((char *)s, c);
-	pos = 0;
-	strs = (char **)malloc(sizeof(char *) * (j + 1));
-	if (!strs)
-		return (NULL);
-	strs[j] = NULL;
-	while (i < j)
+	j = 0;
+	if (str[i] && str[i] != c)
+		array[j++] = str_add(&str[i], c, &i);
+	while (str[i])
 	{
-		strs[i] = ft_stralloc(((char *)s), c, &pos);
-		if (strs[i] == NULL)
-		{
-			ft_freeup(strs[i]);
-		}
+		if (str[i] == c && (str[i + 1] != c && str[i + 1] != 0))
+			array[j++] = str_add(&str[i + 1], c, &i);
 		i++;
 	}
-	return (strs);
+	array[j] = NULL;
+	return (array);
 }
