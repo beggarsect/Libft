@@ -29,11 +29,10 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	return (dest);
 }
 
-// #include <stdio.h>
 // int	main(void)
 // {
 // 	char	dest[100];
 // 	char	src[] = "42prague";
-
-// 	printf("check: %s\n", ft_memcpy(dest, src, 4));
+// 	ft_memcpy(dest, src, 4);
+// 	puts(dest);
 // }

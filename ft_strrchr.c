@@ -14,16 +14,23 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int	i;
+	int		i;
+	char	*result;
 
-	i = ft_strlen(s);
+	i = 0;
+	result = NULL;
+	while (s[i] != '\0')
+	{
+		if (s[i] == (char)c)
+			result = ((char *)s + i);
+		i++;
+	}
 	if (c == '\0')
 		return ((char *)s + i);
-	while (i >= 0)
-	{
-		if (s[i] == c)
-			return ((char *)s + i);
-		i--;
-	}
-	return (0);
+	return (result);
 }
+
+// int	main(void)
+// {
+//    	puts(ft_strrchr("hello 42 prague", ' '));
+// }

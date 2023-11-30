@@ -16,7 +16,7 @@ CFLAGS 	= 	-Wall -Werror -Wextra
 
 CC		= 	cc
 
-RM 	= 	rm -f
+RM 		= 	rm -f
 
 SRC 	= 	ft_atoi.c ft_bzero.c				\
 			ft_calloc.c ft_isalnum.c			\
@@ -36,7 +36,7 @@ SRC 	= 	ft_atoi.c ft_bzero.c				\
 			ft_tolower.c ft_toupper.c			\
 			ft_strdup.c	ft_split.c				\
 
-OBJS 		= $(SRC:.c=.o)
+OBJS 	= 	$(SRC:.c=.o)
 
 BONUS	=	ft_lstadd_back.c ft_lstadd_front.c	\
 			ft_lstclear.c ft_lstdelone.c		\
@@ -64,4 +64,4 @@ re:		fclean $(NAME)
 bonus:			$(OBJS) $(BONUS_OBJS)
 				ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
 
-.PHONY: all, bonus, clean, fclean, re
+.PHONY: all, clean, fclean, re, bonus

@@ -28,8 +28,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	return (NULL);
 }
 
-// #include <stdio.h>
 // int	main(void)
 // {
-// 	printf("check: %s\n", ft_memchr("hello 42 prague", '4', 7));
+// 	puts(ft_memchr("hello 42 prague", '4', 10));
 // }

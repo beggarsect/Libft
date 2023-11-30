@@ -30,7 +30,6 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	return (0);
 }
 
-// #include <stdio.h>
 // int	main(void)
 // {
 // 	printf("check: %d\n", ft_memcmp("42prague", "42prague!", 9));

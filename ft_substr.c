@@ -14,26 +14,36 @@
 
 char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
-	unsigned int		i;
-	unsigned int		j;
-	char				*substr;
+	size_t	i;
+	size_t	s_len;
+	char	*substr;
 
-	if (start >= ft_strlen(s))
-		return ("");
-	substr = (char *)malloc(sizeof(*s) * (len + 1));
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	i = 0;
+	if (len > s_len)
+		len = s_len;
+	if (start >= s_len)
+	{
+		substr = (char *)malloc(1);
+		if (!substr)
+			return (NULL);	
+		substr[0] = '\0';
+		return (substr);
+	}
+	substr = (char *)malloc(len + 1);
 	if (!substr)
 		return (NULL);
-	i = 0;
-	j = 0;
-	while (s[i] != '\0')
+	while (i++ < start)
 	{
-		if (i >= start && j < len)
-		{
-			substr[j] = s[i];
-			j++;
-		}
-		i++;
+		s++;	
 	}
-	substr[j] = '\0';
+	ft_strlcpy(substr, s, len + 1);
 	return (substr);
 }
+
+// int	main(void)
+// {
+//    	puts(ft_substr("hello 42 prague", 10, 100));
+// }
