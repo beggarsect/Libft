@@ -57,7 +57,7 @@ clean:
 		@$(RM) $(OBJS) $(BONUS_OBJS)
 
 fclean:
-		@$(RM) $(NAME)
+		@$(RM) $(NAME) $(OBJS) $(BONUS_OBJS)
 
 re:		fclean $(NAME)
 

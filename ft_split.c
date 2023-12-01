@@ -23,7 +23,7 @@ int	num_of_strings(char *str, char c)
 		words++;
 	while (str[i])
 	{
-		if (str[i] == c && (str[i + 1] != c && str[i + 1] != 0))
+		if (str[i] == c && (str[i + 1] != c && str[i + 1] != '\0'))
 			words++;
 		i++;
 	}
@@ -49,7 +49,7 @@ char	*str_add(char *str, char c, int *index)
 		word[i] = str[i];
 		i++;
 	}
-	word[i] = 0;
+	word[i] = '\0';
 	return (word);
 }
 
@@ -70,7 +70,7 @@ char	**ft_split(char const *s, char c)
 		array[j++] = str_add(&str[i], c, &i);
 	while (str[i])
 	{
-		if (str[i] == c && (str[i + 1] != c && str[i + 1] != 0))
+		if (str[i] == c && (str[i + 1] != c && str[i + 1] != '\0'))
 			array[j++] = str_add(&str[i + 1], c, &i);
 		i++;
 	}
