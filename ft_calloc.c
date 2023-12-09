@@ -24,3 +24,19 @@ void	*ft_calloc(size_t num_elements, size_t element_size)
 	ft_memset((unsigned char *)ptr, 0, num_elements * element_size);
 	return (ptr);
 }
+
+// eugene
+// void	*ft_calloc(size_t count, size_t size)
+// {
+// 	void	*ptr;
+// 	long	size_max;
+
+// 	size_max = 461168601842738790;
+// 	if (count == 0 || size == 0 || count > size_max / size)
+// 		return (NULL);
+// 	ptr = malloc(count * size);
+// 	if (ptr == NULL)
+// 		return (NULL);
+// 	ft_memset(ptr, 0, count * size);
+// 	return (ptr);
+// }
